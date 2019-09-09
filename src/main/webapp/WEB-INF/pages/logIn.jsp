@@ -25,15 +25,14 @@
                            required oninvalid="this.setCustomValidity('At least 8 characters long (and less than 100 characters)\n'+
                             'Contains at least 1 number\n'+
                             'Contains at least 1 lowercase letter\n'+
-                            'Contains at least 1 uppercase letter\n'+
-                            'Contains a special character (e.g. @ !)')" oninput="setCustomValidity('')"
-                           pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+                            'Contains at least 1 uppercase letter')" oninput="setCustomValidity('')"
+                           pattern=^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$
                            title="
                            (At least 8 characters long (and less than 100 characters)
                             Contains at least 1 number
                             Contains at least 1 lowercase letter
                             Contains at least 1 uppercase letter
-                            Contains a special character (e.g. @ !)" placeholder="Password"/>
+                            " placeholder="Password"/>
                 </p>
                 <p>
                     <span class="fontawesome-lock"></span>
@@ -41,7 +40,7 @@
                            oninvalid="this.setCustomValidity('Please enter password again.')"
                            oninput="setCustomValidity('')"
                            placeholder="Password"
-                           pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+                           pattern=^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$
                            title="Please enter password"/>
                 </p>
                 <p><input type="submit" value="Log in"/></p>

@@ -10,14 +10,33 @@
     <div id="login">
         <form method="post">
             <fieldset>
-                <p><span class="fontawesome-user"></span><input type="text" name="login" value="Логин" required></p>
-                <p><span class="fontawesome-lock"></span><input type="password" name="password" value="Пароль" required></p>
-                <p><input type="submit" value="Войти"/></p>
+                <p>
+                    <span class="fontawesome-user"></span>
+                    <input type="text" id="log" name="login"
+                           required oninvalid="this.setCustomValidity('Incorrect login.')" oninput="setCustomValidity('')"
+                           placeholder="Login" pattern="[A-Za-z0-9?=.*\d]{1,15}"
+                           title="Please enter login."
+                    />
+                <p><span class="fontawesome-lock"></span>
+                    <input type="password" id="password" name="password"
+                           required oninvalid="this.setCustomValidity('At least 8 characters long (and less than 100 characters)\n'+
+'                            Contains at least 1 number\n'+
+'                            Contains at least 1 lowercase letter\n'+
+'                            Contains at least 1 uppercase letter')" oninput="setCustomValidity('')"
+                           pattern=^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$
+                           title="
+                           (At least 8 characters long (and less than 100 characters)
+                            Contains at least 1 number
+                            Contains at least 1 lowercase letter
+                            Contains at least 1 uppercase letter
+                            " placeholder="Password"  />
+                </p>
+                <p><input type="submit" value="Sing In"/></p>
                 <c:if test="${not empty error}">
                     <p class="error">${error}</p><br>
                 </c:if>
             </fieldset>
         </form>
-        <p>Нет аккаунта? &nbsp;&nbsp;<a href="${pageContext.servletContext.contextPath}/logIn">Регистрация</a><span class="fontawesome-arrow-right"></span></p>
+        <p>No account? &nbsp;&nbsp;<a href="${pageContext.servletContext.contextPath}/logIn">Registration</a><span class="fontawesome-arrow-right"></span></p>
     </div>
 </tags:master>
