@@ -34,4 +34,24 @@
     <servlet-name>logIn</servlet-name>
     <url-pattern>/logIn</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>homePage</servlet-name>
+    <servlet-class>com.game.java.web.HomePageServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>homePage</servlet-name>
+    <url-pattern>/homePage</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>createRoom</servlet-name>
+    <servlet-class>com.game.java.web.CreateRoomServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>createRoom</servlet-name>
+    <url-pattern>/createRoom</url-pattern>
+  </servlet-mapping>
 </web-app>

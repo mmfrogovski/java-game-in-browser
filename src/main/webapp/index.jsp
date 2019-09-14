@@ -1,2 +1,2 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<% response.sendRedirect("signIn"); %>
+<% response.sendRedirect("homePage"); %>

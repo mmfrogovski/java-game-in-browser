@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ tag trimDirectiveWhitespaces="true" %>
 <%@ attribute name="pageTitle" required="true" %>
 
@@ -10,10 +11,33 @@
 </head>
 <body>
 <header>
-    <a href="${pageContext.servletContext.contextPath}/signIn">
-        <img src="${pageContext.servletContext.contextPath}/images/logo.jpg">
-        DURAK
+    <a href="${pageContext.servletContext.contextPath}/homePage">
+        Biki i korovi
     </a>
+    <div style="float: right; font-size: 30px; color: #d44179 ; background: aqua">
+        <a href="${pageContext.servletContext.contextPath}/createRoom">
+        Create Room
+        </a>
+    </div>
+    <div style="float: right; font-size: 30px; color: #d44179 ; background: aqua">
+        <a href="">
+            Room list
+        </a>
+    </div>
+    <div style="float: right">
+        <button>
+            <c:if test="true">
+                <a href="${pageContext.servletContext.contextPath}/signIn">
+                <p>Sign in</p>
+                </a>
+            </c:if>
+            <c:if test="false">
+            <a href="${pageContext.servletContext.contextPath}/logIn">
+                <p>Log In</p>
+            </a>
+            </c:if>
+        </button>
+    </div>
 </header>
 <main>
     <jsp:doBody/>
