@@ -5,6 +5,16 @@
          version="3.1">
   <display-name>Java game</display-name>
 
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>com.game.java.filter.AuthFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
   <servlet>
     <servlet-name>signIn</servlet-name>
     <servlet-class>com.game.java.web.SignInServlet</servlet-class>
@@ -53,5 +63,25 @@
   <servlet-mapping>
     <servlet-name>createRoom</servlet-name>
     <url-pattern>/createRoom</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>room</servlet-name>
+    <servlet-class>com.game.java.web.RoomPageServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>room</servlet-name>
+    <url-pattern>/room/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>rooms</servlet-name>
+    <servlet-class>com.game.java.web.RoomsPageServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>rooms</servlet-name>
+    <url-pattern>/rooms</url-pattern>
   </servlet-mapping>
 </web-app>

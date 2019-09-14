@@ -1,12 +1,17 @@
 package com.game.java.model.jdbc;
 
-import com.game.java.model.user.Room;
-import com.game.java.model.user.User;
-
+import java.util.List;
 import java.util.Optional;
 
 public interface RoomDao {
-    public void save(Room room);
+    public void saveRoom(Room room);
 
-    public Optional<Room> signIn();
+    public Optional<Room> getRoomById(int id);
+    public Optional<Room> getRoomByName(String name);
+
+    public void deleteUserFromRoom(User user);
+
+    public void addUserToRoom(User user, int roomId);
+
+    public List<Room> getAllRooms();
 }

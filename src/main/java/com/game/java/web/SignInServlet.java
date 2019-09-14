@@ -2,7 +2,7 @@ package com.game.java.web;
 
 
 import com.game.java.model.jdbc.UserDaoImpl;
-import com.game.java.model.user.User;
+import com.game.java.model.jdbc.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,17 +28,17 @@ public class SignInServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        String message = isUserValid(login, password);
+        Optional<User> user = userDao.signIn(login);
+        String message = isUserValid(user,password);
         if (message.equals("true")) {
-            resp.sendRedirect(req.getContextPath() + "/game");
+            resp.sendRedirect(req.getContextPath() + "/homePage");
         } else {
             req.setAttribute("error", message);
             req.getRequestDispatcher("/WEB-INF/pages/signIn.jsp").forward(req, resp);
         }
     }
 
-    private String isUserValid(String login, String password) {
-        Optional<User> user = userDao.signIn(login);
+    private String isUserValid(Optional<User> user,String password) {
         if (!user.isPresent()) {
             return "User don't exist";
         } else if (!user.get().getPassword().equals(password)) {

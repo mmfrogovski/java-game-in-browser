@@ -1,7 +1,5 @@
 package com.game.java.model.jdbc;
 
-import com.game.java.model.user.User;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,9 +7,9 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class UserDaoImpl implements UserDao {
-    private final String SQL_QUERY_ADD_USER = "INSERT INTO users (login, password) VALUES(?,?)";
-    private final String SQL_QUERY_GET_USER = "SELECT id, login, password FROM users " +
-            "WHERE login = ?";
+    private final String SQL_QUERY_ADD_USER = "INSERT INTO users (login, password, authorized) VALUES(?,?,?)";
+    private final String SQL_QUERY_GET_USER = "SELECT id, login, password FROM users WHERE login = ?";
+    private final String SQL_QUERY_CHANGE_AUTHORIZED = "UPDATE users SET authorized = ? WHERE login = ?";
 
     public UserDaoImpl() {
 
@@ -21,7 +19,7 @@ public class UserDaoImpl implements UserDao {
         return SingletonHolder.instance;
     }
 
-    public static class SingletonHolder {
+    private static class SingletonHolder {
         private static final UserDaoImpl instance = new UserDaoImpl();
     }
 
@@ -34,21 +32,12 @@ public class UserDaoImpl implements UserDao {
             preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_USER);
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setBoolean(3, false);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error");
         } finally {
-            try {
-
-                if (connection != null) {
-                    connection.close();
-                }
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error");
-            }
+            DatabaseConnection.closeConnection(connection, preparedStatement);
         }
     }
 
@@ -62,6 +51,10 @@ public class UserDaoImpl implements UserDao {
             preparedStatement = connection.prepareStatement(SQL_QUERY_GET_USER);
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
+            preparedStatement = connection.prepareStatement(SQL_QUERY_CHANGE_AUTHORIZED);
+            preparedStatement.setBoolean(1,true);
+            preparedStatement.setString(2,login);
+            preparedStatement.executeUpdate();
             return initUser(resultSet);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -78,9 +71,34 @@ public class UserDaoImpl implements UserDao {
         return Optional.empty();
     }
 
+    @Override
+    public void logOff(String login) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DatabaseConnection.getInstance().getConnection();
+            preparedStatement = connection.prepareStatement(SQL_QUERY_CHANGE_AUTHORIZED);
+            preparedStatement.setBoolean(1,false);
+            preparedStatement.setString(2,login);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private Optional<User> initUser(ResultSet resultSet) throws SQLException {
         User user = null;
-        if(resultSet.next()){
+        if (resultSet.next()) {
             user = new User();
             user.setId(resultSet.getInt("Id"));
             user.setLogin(resultSet.getString("Login"));

@@ -30,7 +30,7 @@ public class DatabaseConnection {
         return instance;
     }
 
-    public static void closeConnection(Connection connection, PreparedStatement preparedStatement) {
+    public static void closeConnection(Connection connection, PreparedStatement preparedStatement){
         try {
             if (connection != null) {
                 connection.close();

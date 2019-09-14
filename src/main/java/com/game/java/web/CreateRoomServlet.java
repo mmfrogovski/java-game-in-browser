@@ -1,6 +1,9 @@
 package com.game.java.web;
 
-import com.game.java.model.user.User;
+import com.game.java.model.jdbc.Room;
+import com.game.java.model.jdbc.RoomDao;
+import com.game.java.model.jdbc.RoomDaoImpl;
+import com.game.java.model.jdbc.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,9 +13,11 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class CreateRoomServlet extends HttpServlet {
-    @Override
-    public void init() throws ServletException {
+    private RoomDao roomDao;
 
+    @Override
+    public void init() {
+        this.roomDao = RoomDaoImpl.getInstance();
     }
 
     @Override
@@ -22,25 +27,16 @@ public class CreateRoomServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String login = req.getParameter("name");
-//        String password = req.getParameter("password");
-//        String message = isUserValid(login, password);
-//        if (message.equals("true")) {
-//            resp.sendRedirect(req.getContextPath() + "/game");
-//        } else {
-//            req.setAttribute("error", message);
-//            req.getRequestDispatcher("/WEB-INF/pages/signIn.jsp").forward(req, resp);
-//        }
+        String name = req.getParameter("roomName");
+        roomDao.saveRoom(new Room(name));
+        Optional<Room> room = roomDao.getRoomByName(name);
+        if (room.isPresent()) {
+            User user =(User) req.getAttribute("user");
+            roomDao.addUserToRoom((User) req.getAttribute("user"),room.get().getId());
+            resp.sendRedirect(req.getContextPath() + "/room/" + room.get().getId());
+        } else {
+            resp.setStatus(404);
+            req.getRequestDispatcher("/WEB-INF/pages/createRoom.jsp").forward(req, resp);
+        }
     }
-
-//    private String isUserValid(String login, String password) {
-//        Optional<User> user = userDao.signIn(login);
-//        if (!user.isPresent()) {
-//            return "User don't exist";
-//        } else if (!user.get().getPassword().equals(password)) {
-//            return "Wrong password";
-//        } else {
-//            return "true";
-//        }
-//    }
 }
