@@ -1,4 +1,4 @@
-package com.game.java.model.user;
+package com.game.java.model.jdbc;
 
 import java.util.Objects;
 
@@ -6,6 +6,7 @@ public class User {
     private int id;
     private String login;
     private String password;
+    private boolean authorized;
 
     public User(String login, String password) {
         this.login = login;
@@ -39,12 +40,21 @@ public class User {
         this.password = password;
     }
 
+    public boolean getAuthorized() {
+        return authorized;
+    }
+
+    public void setAuthoried(boolean authorized) {
+        this.authorized = authorized;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", authorized='" + authorized + "'" +
                 '}';
     }
 
@@ -61,5 +71,9 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, login, password);
+    }
+
+    public enum AUTHORIZATION {
+        AUTHORIZED, NOT_AUTHORIZED
     }
 }

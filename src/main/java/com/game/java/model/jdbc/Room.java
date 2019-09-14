@@ -1,4 +1,4 @@
-package com.game.java.model.user;
+package com.game.java.model.jdbc;
 
 import java.util.Objects;
 
@@ -7,6 +7,10 @@ public class Room {
     private String name;
     private int firstUserId;
     private int secondUserId;
+
+    public Room(String name) {
+        this.name = name;
+    }
 
     public int getFirstUserId() {
         return firstUserId;

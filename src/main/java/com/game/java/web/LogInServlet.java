@@ -1,7 +1,7 @@
 package com.game.java.web;
 
 import com.game.java.model.jdbc.UserDaoImpl;
-import com.game.java.model.user.User;
+import com.game.java.model.jdbc.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

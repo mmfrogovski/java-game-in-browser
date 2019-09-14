@@ -2,6 +2,7 @@ package com.game.java.model.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
@@ -28,4 +29,19 @@ public class DatabaseConnection {
 
         return instance;
     }
+
+    public static void closeConnection(Connection connection, PreparedStatement preparedStatement){
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error");
+        }
+    }
+
+
 }
