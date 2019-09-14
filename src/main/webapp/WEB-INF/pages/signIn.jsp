@@ -13,7 +13,8 @@
                 <p>
                     <span class="fontawesome-user"></span>
                     <input type="text" id="log" name="login"
-                           required oninvalid="this.setCustomValidity('Incorrect login.')" oninput="setCustomValidity('')"
+                           required oninvalid="this.setCustomValidity('Incorrect login.')"
+                           oninput="setCustomValidity('')"
                            placeholder="Login" pattern="[A-Za-z0-9?=.*\d]{1,15}"
                            title="Please enter login."
                     />
@@ -29,7 +30,7 @@
                             Contains at least 1 number
                             Contains at least 1 lowercase letter
                             Contains at least 1 uppercase letter
-                            " placeholder="Password"  />
+                            " placeholder="Password"/>
                 </p>
                 <p><input type="submit" value="Sing In"/></p>
                 <c:if test="${not empty error}">
@@ -37,6 +38,7 @@
                 </c:if>
             </fieldset>
         </form>
-        <p>No account? &nbsp;&nbsp;<a href="${pageContext.servletContext.contextPath}/logIn">Registration</a><span class="fontawesome-arrow-right"></span></p>
+        <p>No account? &nbsp;&nbsp;<a href="${pageContext.servletContext.contextPath}/logIn">Registration</a><span
+                class="fontawesome-arrow-right"></span></p>
     </div>
 </tags:master>

@@ -57,7 +57,7 @@ p {
 
 #login form input {
     height: 50px;
-    outline:none;
+    outline: none;
 }
 
 #login form input[type="text"], input[type="password"] {
@@ -72,7 +72,7 @@ p {
 }
 
 #login form input:focus {
-    color:#fff;
+    color: #fff;
 }
 
 #login form input[type="submit"] {
@@ -84,7 +84,7 @@ p {
     font-weight: bold;
     margin-bottom: 2em;
     text-transform: uppercase;
-    cursor:pointer;
+    cursor: pointer;
     width: 280px;
 }
 
