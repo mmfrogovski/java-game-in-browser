@@ -55,7 +55,7 @@ public class Room {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", login='" + name + '\'' +'}';
+                ", login='" + name + '\'' + '}';
     }
 
     @Override

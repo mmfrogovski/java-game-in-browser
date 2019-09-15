@@ -3,95 +3,96 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-  <display-name>Java game</display-name>
+    <display-name>Java game</display-name>
 
-  <filter>
-    <filter-name>AuthFilter</filter-name>
-    <filter-class>com.game.java.filter.AuthFilter</filter-class>
-  </filter>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.game.java.filter.AuthFilter</filter-class>
+    </filter>
 
-  <filter-mapping>
-    <filter-name>AuthFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-  <servlet>
-    <servlet-name>signIn</servlet-name>
-    <servlet-class>com.game.java.web.SignInServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>signIn</servlet-name>
+        <servlet-class>com.game.java.web.SignInServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>signIn</servlet-name>
-    <url-pattern>/signIn</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>signIn</servlet-name>
+        <url-pattern>/signIn</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>game</servlet-name>
-    <servlet-class>com.game.java.web.GameServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>game</servlet-name>
+        <servlet-class>com.game.java.web.GameServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>game</servlet-name>
-    <url-pattern>/game</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>game</servlet-name>
+        <url-pattern>/game</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>logIn</servlet-name>
-    <servlet-class>com.game.java.web.LogInServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>logIn</servlet-name>
+        <servlet-class>com.game.java.web.LogInServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>logIn</servlet-name>
-    <url-pattern>/logIn</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logIn</servlet-name>
+        <url-pattern>/logIn</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>homePage</servlet-name>
-    <servlet-class>com.game.java.web.HomePageServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>homePage</servlet-name>
+        <servlet-class>com.game.java.web.HomePageServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>homePage</servlet-name>
-    <url-pattern>/homePage</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>homePage</servlet-name>
+        <url-pattern>/homePage</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>createRoom</servlet-name>
-    <servlet-class>com.game.java.web.CreateRoomServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>createRoom</servlet-name>
+        <servlet-class>com.game.java.web.CreateRoomServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>createRoom</servlet-name>
-    <url-pattern>/createRoom</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createRoom</servlet-name>
+        <url-pattern>/createRoom</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>room</servlet-name>
-    <servlet-class>com.game.java.web.RoomPageServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>room</servlet-name>
+        <servlet-class>com.game.java.web.RoomPageServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>room</servlet-name>
-    <url-pattern>/room/*</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>room</servlet-name>
+        <url-pattern>/room/*</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>rooms</servlet-name>
-    <servlet-class>com.game.java.web.RoomsPageServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>rooms</servlet-name>
+        <servlet-class>com.game.java.web.RoomsPageServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>rooms</servlet-name>
-    <url-pattern>/rooms</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>rooms</servlet-name>
+        <url-pattern>/rooms</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>logOff</servlet-name>
-    <servlet-class>com.game.java.web.LogOffServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>deleteUserFromRoom</servlet-name>
+        <servlet-class>com.game.java.web.DeleteUserFromRoomServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>logOff</servlet-name>
-    <url-pattern>/logOff</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteUserFromRoom</servlet-name>
+        <url-pattern>/deleteUserFromRoom/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>

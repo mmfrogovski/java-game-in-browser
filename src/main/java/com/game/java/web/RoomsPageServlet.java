@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 public class RoomsPageServlet extends HttpServlet {
     private RoomDao roomDao;
 
@@ -21,13 +23,18 @@ public class RoomsPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Room> rooms = roomDao.getAllRooms();
-        req.setAttribute("rooms", rooms);
-        req.getRequestDispatcher("/WEB-INF/pages/rooms.jsp").forward(req, resp);
+        if (isNull(req.getSession().getAttribute("user"))) {
+            resp.sendRedirect(req.getContextPath() + "/homePage");
+        } else {
+            List<Room> rooms = roomDao.getAllRooms();
+            req.setAttribute("rooms", rooms);
+            req.getRequestDispatcher("/WEB-INF/pages/rooms.jsp").forward(req, resp);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+
+        resp.sendRedirect(req.getContextPath() + "/rooms");
     }
 }

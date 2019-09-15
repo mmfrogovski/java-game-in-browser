@@ -7,6 +7,32 @@ public class User {
     private String login;
     private String password;
     private boolean authorized;
+    private boolean inGame;
+    private int inRoom;
+
+    public boolean isAuthorized() {
+        return authorized;
+    }
+
+    public void setAuthorized(boolean authorized) {
+        this.authorized = authorized;
+    }
+
+    public boolean isInGame() {
+        return inGame;
+    }
+
+    public void setInGame(boolean inGame) {
+        this.inGame = inGame;
+    }
+
+    public int getInRoom() {
+        return inRoom;
+    }
+
+    public void setInRoom(int inRoom) {
+        this.inRoom = inRoom;
+    }
 
     public User(String login, String password) {
         this.login = login;

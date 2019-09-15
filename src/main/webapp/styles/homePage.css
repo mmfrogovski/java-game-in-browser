@@ -11,23 +11,23 @@
     width: 100%;
 }
 
- .background-image, .image-overlay {
+.background-image, .image-overlay {
     height: auto;
     position: absolute;
-     top: 0;
-     left: 0;
+    top: 0;
+    left: 0;
 }
 
- img{
-     height: 480px;
-     width: 640px;
- }
+img {
+    height: 480px;
+    width: 640px;
+}
 
- .image-overlay {
-     background-color: black;
-     opacity: 0.1;
-     height: 480px;
-     width: 100%;
-     z-index: 10;
- }
+.image-overlay {
+    background-color: black;
+    opacity: 0.1;
+    height: 480px;
+    width: 100%;
+    z-index: 10;
+}
 

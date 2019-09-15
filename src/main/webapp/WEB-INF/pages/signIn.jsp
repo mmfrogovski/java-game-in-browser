@@ -34,7 +34,7 @@
                 </p>
                 <p><input type="submit" value="Sing In"/></p>
                 <c:if test="${not empty error}">
-                    <p class="error">${error}</p><br>
+                    <p class="error">${error}</p>
                 </c:if>
             </fieldset>
         </form>
