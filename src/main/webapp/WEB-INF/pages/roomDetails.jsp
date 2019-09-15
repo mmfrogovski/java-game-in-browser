@@ -19,6 +19,7 @@
 
    <input class="msg" name="${user.login}">
 </div>
+<button class="ready">Start</button>
 </body>
 
 

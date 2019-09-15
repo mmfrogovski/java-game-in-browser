@@ -1,25 +1,40 @@
 let chatUnit ={
     init(){
-        this.chatbox = document.querySelector(".chatbox");
 
+        this.chatbox = document.querySelector(".chatbox");
+        this.readyBtn = document.querySelector("button");
         this.msgTextArea = this.chatbox.querySelector("input");
         this.chatMessageContainer = this.chatbox.querySelector(".messages");
         this.bindEvent();
     },
     bindEvent(){
         this.openSocket();
+        this.readyBtn.addEventListener('click', e=>{
+            this.readyBtn.style.display="none";
+            e.preventDefault();
+            this.send("ready")
+        });
         this.msgTextArea.addEventListener("keyup", e=>{
-            if(e.ctrlKey && e.keyCode === 13){
+            if(e.keyCode === 13){
                 e.preventDefault();
                 this.send();
             }
-        })
-    },
-    send(){
-        this.sendMessage({
-            name:this.name,
-            text:this.msgTextArea.value
         });
+
+    },
+    send(e){
+        if(e==="ready"){
+            this.sendMessage({
+                name:this.name,
+                text:"-ready"
+            });
+        }
+        else {
+            this.sendMessage({
+                name: this.name,
+                text: this.msgTextArea.value
+            });
+        }
     },
     onOpenSock(){
 
@@ -54,8 +69,9 @@ let chatUnit ={
         this.ws.onopen = ()=>this.onOpenSock();
         this.ws.onmessage = (e)=>this.onMessage(JSON.parse(e.data));
         this.ws.onclose = ()=>this.onClose();
-
     }
 };
 
 window.addEventListener("load", e=>chatUnit.init());
+
+
