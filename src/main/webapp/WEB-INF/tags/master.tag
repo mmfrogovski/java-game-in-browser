@@ -6,50 +6,31 @@
 <head>
     <title>${pageTitle}</title>
     <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/styles/main.css">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/styles/style.css">
     <meta charset="UTF-8"/>
 </head>
 <body>
 <header>
-    <a href="${pageContext.servletContext.contextPath}/homePage">
-        Biki i korovi
-        ${user}
-    </a>
-    <c:if test="${user.authorized}">
-        <div style="float: right; font-size: 30px; color: #d44179 ; background: aqua">
-            <a href="${pageContext.servletContext.contextPath}/createRoom">
-                Create Room
-            </a>
-        </div>
-        <div style="float: right; font-size: 30px; color: #d44179 ; background: aqua">
-            <a href="${pageContext.servletContext.contextPath}/rooms">
-                Rooms
-            </a>
-        </div>
-    </c:if>
-    <div style="float: right">
-        <button>
-            <c:if test="${!user.authorized}">
-                <a href="${pageContext.servletContext.contextPath}/signIn">
-                    <p>Sign in</p>
-                </a>
-            </c:if>
-            <c:if test="${user.authorized}">
-                <form method="post">
-                    <button formaction="${pageContext.servletContext.contextPath}/homePage">
 
-                        <p>Log Off</p>
-                    </button>
-                </form>
-            </c:if>
-        </button>
+    <div class="container blue circleBehind">
+        <a href="${pageContext.servletContext.contextPath}/homePage" style="right: 30%;">HOME</a>
+        <c:if test="${user.authorized}">
+            <a href="${pageContext.servletContext.contextPath}/createRoom">CREATE ROOM</a>
+            <a href="${pageContext.servletContext.contextPath}/rooms">ROOM LIST</a>
+        </c:if>
+        <c:if test="${!user.authorized}">
+            <a href="${pageContext.servletContext.contextPath}/signIn">Sign in</a>
+        </c:if>
+        <c:if test="${user.authorized}">
+            <jsp:include page="/logOff"/>
+        </c:if>
     </div>
 </header>
 <main>
     <jsp:doBody/>
 </main>
 <footer>
-    <p>(c) Create Game 2019</p>
+    <div>All rights Reserved</div>
 </footer>
 </body>
 </html>

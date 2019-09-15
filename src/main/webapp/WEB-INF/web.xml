@@ -84,4 +84,14 @@
     <servlet-name>rooms</servlet-name>
     <url-pattern>/rooms</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>logOff</servlet-name>
+    <servlet-class>com.game.java.web.LogOffServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>logOff</servlet-name>
+    <url-pattern>/logOff</url-pattern>
+  </servlet-mapping>
 </web-app>
