@@ -20,5 +20,8 @@
                 <button>Create</button>
             </c:otherwise>
         </c:choose>
+        <c:if test="${not empty error}">
+            <p class="error">${error}</p>
+        </c:if>
     </form>
 </tags:master>
