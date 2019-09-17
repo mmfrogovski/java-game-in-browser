@@ -7,11 +7,14 @@ public interface RoomDao {
     public void saveRoom(Room room);
 
     public Optional<Room> getRoomById(int id);
+
     public Optional<Room> getRoomByName(String name);
 
-    public void deleteUserFromRoom(User user);
+    public void deleteUserFromRoom(User user, Room room);
 
-    public void addUserToRoom(User user, int roomId);
+    public void addUserToRoom(User user, Room room);
 
     public List<Room> getAllRooms();
+
+    public List<User> getUsersFromRoom(Room room);
 }

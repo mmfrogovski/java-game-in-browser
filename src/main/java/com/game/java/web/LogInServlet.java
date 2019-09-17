@@ -1,7 +1,7 @@
 package com.game.java.web;
 
-import com.game.java.model.jdbc.UserDaoImpl;
 import com.game.java.model.jdbc.User;
+import com.game.java.model.jdbc.UserDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,8 +27,8 @@ public class LogInServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password1 = req.getParameter("password1");
         String password2 = req.getParameter("password2");
-        String message = isUserValid(login,password1,password2);
-        if(message.equals("true")){
+        String message = isUserValid(login, password1, password2);
+        if (message.equals("true")) {
             userDao.save(new User(login, password1));
             resp.sendRedirect(req.getContextPath() + "/signIn");
         } else {

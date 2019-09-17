@@ -9,6 +9,16 @@ public class Message {
     private String name;
     private String text;
 
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
+
+    private String roomId;
+
     public String getName() {
         return name;
     }

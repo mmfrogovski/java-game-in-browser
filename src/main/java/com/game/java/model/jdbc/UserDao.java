@@ -8,4 +8,6 @@ public interface UserDao {
     public Optional<User> signIn(String login);
 
     public void logOff(String login);
+
+    public Optional<User> getUserById(int id);
 }

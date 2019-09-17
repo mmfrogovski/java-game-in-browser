@@ -1,9 +1,6 @@
 package com.game.java.web;
 
-import com.game.java.model.jdbc.Room;
-import com.game.java.model.jdbc.RoomDao;
-import com.game.java.model.jdbc.RoomDaoImpl;
-import com.game.java.model.jdbc.User;
+import com.game.java.model.jdbc.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,17 +9,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
+import static java.util.Objects.isNull;
+
 public class CreateRoomServlet extends HttpServlet {
     private RoomDao roomDao;
+    private UserDao userDao;
 
     @Override
     public void init() {
         this.roomDao = RoomDaoImpl.getInstance();
+        this.userDao = UserDaoImpl.getInstance();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/pages/createRoom.jsp").forward(req, resp);
+        if (isNull(req.getSession().getAttribute("user"))) {
+            resp.sendRedirect(req.getContextPath() + "/homePage");
+        } else {
+            req.getRequestDispatcher("/WEB-INF/pages/createRoom.jsp").forward(req, resp);
+        }
     }
 
     @Override
@@ -31,8 +36,9 @@ public class CreateRoomServlet extends HttpServlet {
         roomDao.saveRoom(new Room(name));
         Optional<Room> room = roomDao.getRoomByName(name);
         if (room.isPresent()) {
-            User user =(User) req.getAttribute("user");
-            roomDao.addUserToRoom((User) req.getAttribute("user"),room.get().getId());
+            User user = (User) req.getSession().getAttribute("user");
+            roomDao.addUserToRoom(user, room.get());
+            req.getSession().setAttribute("user", userDao.getUserById(user.getId()).get());
             resp.sendRedirect(req.getContextPath() + "/room/" + room.get().getId());
         } else {
             resp.setStatus(404);

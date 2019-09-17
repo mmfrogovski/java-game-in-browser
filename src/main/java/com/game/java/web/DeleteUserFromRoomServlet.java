@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
-import static java.util.Objects.isNull;
-
-public class RoomPageServlet extends HttpServlet {
+public class DeleteUserFromRoomServlet extends HttpServlet {
     private RoomDao roomDao;
     private UserDao userDao;
 
@@ -22,31 +20,16 @@ public class RoomPageServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (isNull(req.getSession().getAttribute("user"))) {
-            resp.sendRedirect(req.getContextPath() + "/homePage");
-        } else {
-            Optional<Room> room = roomDao.getRoomById(getRoomIdFromPath(req));
-            if (room.isPresent()) {
-                req.setAttribute("room", room.get());
-                req.setAttribute("users", roomDao.getUsersFromRoom(room.get()));
-                req.getRequestDispatcher("/WEB-INF/pages/roomDetails.jsp").forward(req, resp);
-            }
-        }
-    }
-
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Optional<Room> room = roomDao.getRoomById(getRoomIdFromPath(req));
         if (room.isPresent()) {
-            req.setAttribute("room", room.get());
+            roomDao.deleteUserFromRoom((User) req.getSession().getAttribute("user"), room.get());
+            resp.sendRedirect(req.getContextPath() + "/rooms");
             User user = (User) req.getSession().getAttribute("user");
-            roomDao.addUserToRoom(user, room.get());
             req.getSession().setAttribute("user", userDao.getUserById(user.getId()).get());
-            resp.sendRedirect(req.getContextPath() + "/room/" + room.get().getId());
         } else {
             resp.setStatus(404);
-            req.getRequestDispatcher("/WEB-INF/pages/roomDetails.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/pages/rooms.jsp").forward(req, resp);
         }
     }
 

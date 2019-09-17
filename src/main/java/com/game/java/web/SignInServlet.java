@@ -1,8 +1,8 @@
 package com.game.java.web;
 
 
-import com.game.java.model.jdbc.UserDaoImpl;
 import com.game.java.model.jdbc.User;
+import com.game.java.model.jdbc.UserDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
+
+import static java.util.Objects.nonNull;
 
 public class SignInServlet extends HttpServlet {
     private UserDaoImpl userDao;
@@ -21,7 +23,11 @@ public class SignInServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/pages/signIn.jsp").forward(req, resp);
+        if (nonNull(req.getSession().getAttribute("user"))) {
+            resp.sendRedirect(req.getContextPath() + "/homePage");
+        } else {
+            req.getRequestDispatcher("/WEB-INF/pages/signIn.jsp").forward(req, resp);
+        }
     }
 
     @Override
@@ -29,7 +35,7 @@ public class SignInServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         Optional<User> user = userDao.signIn(login);
-        String message = isUserValid(user,password);
+        String message = isUserValid(user, password);
         if (message.equals("true")) {
             resp.sendRedirect(req.getContextPath() + "/homePage");
         } else {
@@ -38,7 +44,7 @@ public class SignInServlet extends HttpServlet {
         }
     }
 
-    private String isUserValid(Optional<User> user,String password) {
+    private String isUserValid(Optional<User> user, String password) {
         if (!user.isPresent()) {
             return "User don't exist";
         } else if (!user.get().getPassword().equals(password)) {

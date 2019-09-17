@@ -40,7 +40,7 @@ public class AuthFilter implements Filter {
         //Logged user.
         if (nonNull(session) &&
                 nonNull(req.getAttribute("login")) &&
-                nonNull(req.getAttribute("password"))){
+                nonNull(req.getAttribute("password"))) {
 
             filterChain.doFilter(request, response);
 

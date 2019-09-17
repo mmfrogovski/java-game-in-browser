@@ -17,13 +17,36 @@
         <c:forEach var="room" items="${rooms}">
             <tr>
                 <td>
-                    ${room.id}
+                        ${room.id}
                 </td>
                 <td>
-                   ${room.name}
+                        ${room.name}
                 </td>
                 <td>
-                    <button><a href="${pageContext.servletContext.contextPath}/room/${room.id}">Join</a></button>
+                    <form method="post">
+                        <c:choose>
+                            <c:when test="${user.inRoom!=0}">
+                                <button formaction="${pageContext.servletContext.contextPath}/room/${room.id}" disabled>
+                                    Join
+                                </button>
+                            </c:when>
+                            <c:otherwise>
+                                <c:choose>
+                                    <c:when test="${room.firstUserId!=0 && room.secondUserId!=0}">
+                                        <button formaction="${pageContext.servletContext.contextPath}/room/${room.id}"
+                                                disabled>Join
+                                        </button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button formaction="${pageContext.servletContext.contextPath}/room/${room.id}">
+                                            Join
+                                        </button>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </c:otherwise>
+                        </c:choose>
+                    </form>
                 </td>
             </tr>
         </c:forEach>

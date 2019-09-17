@@ -5,12 +5,20 @@
 
 
 <tags:master pageTitle="Game">
+
     <form method="post">
         <input type="text" id="roomName" name="roomName"
                required oninvalid="this.setCustomValidity('Incorrect room name.')" oninput="setCustomValidity('')"
                placeholder="Room name" pattern="[A-Za-z0-9?=.*\d]{1,15}"
                title="Please enter room name."
         />
-        <button>Create</button>
+        <c:choose>
+            <c:when test="${user.inRoom!=0}">
+                <button disabled>Create</button>
+            </c:when>
+            <c:otherwise>
+                <button>Create</button>
+            </c:otherwise>
+        </c:choose>
     </form>
 </tags:master>
