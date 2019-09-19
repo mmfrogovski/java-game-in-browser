@@ -29,7 +29,6 @@ public class GameWithBotServlet extends HttpServlet {
             user = (User) req.getSession().getAttribute("user");
             user.setGameWithBotLogic(new GameWithBotLogic());
             req.getRequestDispatcher("/WEB-INF/pages/gameWithBot.jsp").forward(req, resp);
-
         }
     }
 
