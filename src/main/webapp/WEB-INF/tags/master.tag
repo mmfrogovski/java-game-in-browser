@@ -16,20 +16,17 @@
         <a href="${pageContext.servletContext.contextPath}/homePage" class="homeHeader">Home</a>
         <c:choose>
             <c:when test="${user.authorized}">
+                <a href="${pageContext.servletContext.contextPath}/gameWithBot">Game With Bot</a>
                 <a href="${pageContext.servletContext.contextPath}/createRoom">Create room</a>
                 <a href="${pageContext.servletContext.contextPath}/rooms">Room list</a>
+                <c:if test="${user.inRoom!=0}">
+                    <a href="${pageContext.servletContext.contextPath}/room/${user.inRoom}">Your room</a>
+                </c:if>
             </c:when>
             <c:otherwise>
+                <a href="${pageContext.servletContext.contextPath}/signIn">Game With Bot</a>
                 <a href="${pageContext.servletContext.contextPath}/signIn">Create room</a>
                 <a href="${pageContext.servletContext.contextPath}/signIn">Room list</a>
-            </c:otherwise>
-        </c:choose>
-        <c:choose>
-            <c:when test="${user.inRoom!=0}">
-                <a href="${pageContext.servletContext.contextPath}/room/${user.inRoom}">Your room</a>
-            </c:when>
-            <c:otherwise>
-                <a href="${pageContext.servletContext.contextPath}">Your room</a>
             </c:otherwise>
         </c:choose>
         <c:choose>

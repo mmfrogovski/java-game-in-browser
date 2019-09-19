@@ -26,13 +26,13 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>game</servlet-name>
-        <servlet-class>com.game.java.web.GameServlet</servlet-class>
+        <servlet-name>gameWithBot</servlet-name>
+        <servlet-class>com.game.java.web.GameWithBotServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>game</servlet-name>
-        <url-pattern>/game/*</url-pattern>
+        <servlet-name>gameWithBot</servlet-name>
+        <url-pattern>/gameWithBot</url-pattern>
     </servlet-mapping>
 
     <servlet>

@@ -1,5 +1,7 @@
 package com.game.java.model.jdbc;
 
+import com.game.java.gameWithBotLogic.GameWithBotLogic;
+
 import java.util.Objects;
 
 public class User {
@@ -9,6 +11,15 @@ public class User {
     private boolean authorized;
     private boolean inGame;
     private int inRoom;
+    private GameWithBotLogic gameWithBotLogic;
+
+    public GameWithBotLogic getGameWithBotLogic() {
+        return gameWithBotLogic;
+    }
+
+    public void setGameWithBotLogic(GameWithBotLogic gameWithBotLogic) {
+        this.gameWithBotLogic = gameWithBotLogic;
+    }
 
     public boolean isAuthorized() {
         return authorized;
