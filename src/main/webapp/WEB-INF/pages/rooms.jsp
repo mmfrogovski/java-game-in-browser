@@ -4,6 +4,9 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <jsp:useBean id="rooms" type="java.util.ArrayList" scope="request"/>
 
+<head>
+    <link rel="stylesheet" href="styles/rooms.css">
+</head>
 <tags:master pageTitle="Game">
     <table>
         <thead>
@@ -12,6 +15,7 @@
             <td>
                 Name
             </td>
+            <td>Join?</td>
         </tr>
         </thead>
         <c:forEach var="room" items="${rooms}">

@@ -46,11 +46,13 @@
         </c:choose>
     </div>
 </header>
+
 <main>
     <jsp:doBody/>
 </main>
 <footer>
     <div>All rights Reserved</div>
 </footer>
+
 </body>
 </html>

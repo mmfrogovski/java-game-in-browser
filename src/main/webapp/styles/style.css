@@ -18,6 +18,10 @@ footer {
     justify-content: center;
     align-items: center;
     height: 3vw;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 div.container {

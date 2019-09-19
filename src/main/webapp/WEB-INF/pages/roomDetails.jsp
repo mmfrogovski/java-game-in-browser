@@ -4,6 +4,9 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <jsp:useBean id="users" scope="request" type="java.util.List"/>
 
+<head>
+    <link rel="stylesheet" href="styles/details.css">
+</head>
 <tags:master pageTitle="Game">
     <table>
         <thead>
@@ -28,7 +31,7 @@
         </c:forEach>
     </table>
     <form method="post">
-        <button formaction="${pageContext.servletContext.contextPath}/deleteUserFromRoom/${room.id}">Leave from room
+        <button class="leave" formaction="${pageContext.servletContext.contextPath}/deleteUserFromRoom/${room.id}">Leave from room
         </button>
     </form>
 </tags:master>
