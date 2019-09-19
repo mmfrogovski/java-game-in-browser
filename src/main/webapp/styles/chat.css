@@ -1,0 +1,55 @@
+.chatbox{
+
+}
+.messages{
+    background-color: #b7ffdc;
+    width: 500px;
+    padding: 20px;
+    height: 300px;
+    overflow: auto;
+}
+.messages .msg{
+    display: flex;
+    flex-direction: row;
+    background-color: aliceblue;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.messages .msg .from{
+    width: 50px;
+    font-size: 15px;
+    background-color: blue;
+    line-height: 30px;
+    text-align: center;
+    color:white;
+}
+.messages .msg .text{
+    padding: 10px;
+}
+textarea.msg{
+    width: 500px;
+    padding: 10px;
+    resize: none;
+    border: none;
+    box-shadow: 2px 2px 5px 0;
+}
+.game{
+    width: 500px;
+    padding-left: 50px;
+}
+.gameInfo{
+    width: 500px;
+    height: auto;
+    border: brown;
+    padding: 20px;
+    text-align: center;
+    background-color: burlywood;
+}
+textarea.gameInput{
+    width: 535px;
+    padding: 10px;
+    resize: none;
+    border: none;
+    box-shadow: 2px 2px 5px 0;
+}
