@@ -7,7 +7,7 @@
 <head>
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/styles/chat.css">
     <script src="${pageContext.servletContext.contextPath}/scripts/chatAndReady.js"></script>
-
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/styles/details.css">
 </head>
 <tags:master pageTitle="Game">
 
@@ -34,7 +34,7 @@
         </c:forEach>
     </table>
     <form method="post">
-        <button formaction="${pageContext.servletContext.contextPath}/deleteUserFromRoom/${room.id}">Leave from room
+        <button class="leave" formaction="${pageContext.servletContext.contextPath}/deleteUserFromRoom/${room.id}">Leave from room
         </button>
     </form>
     <div class="chatbox">
