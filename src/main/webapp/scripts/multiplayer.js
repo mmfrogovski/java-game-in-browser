@@ -116,7 +116,7 @@ let sendingNumber = {
     }
     ,
     openGameSocket() {
-        this.ws = new WebSocket("ws://localhost:8080/java-game-in-browser/multiplayerGame/" + this.otherName);
+        this.ws = new WebSocket("ws://localhost:8081/java-game-in-browser/multiplayerGame/" + this.otherName);
         this.ws.onopen = () => this.onOpenSock();
         this.ws.onmessage = (e) => this.onMessage(JSON.parse(e.data));
         this.ws.onclose = () => this.onClose();

@@ -1,3 +1,4 @@
+
 let chatUnit = {
     init() {
         this.chatbox = document.querySelector(".chatbox");
@@ -38,7 +39,7 @@ let chatUnit = {
             }
         }
         if (1 < g) {
-            window.location.replace("http://localhost:8080/java-game-in-browser/multiplayerGame/" + this.gameId)
+            window.location.replace("http://localhost:8081/java-game-in-browser/multiplayerGame/" + this.gameId)
         }
 
     }
@@ -118,7 +119,7 @@ let chatUnit = {
     },
     openSocket() {
         this.name = this.msgTextArea.name;
-        this.ws = new WebSocket("ws://localhost:8080/java-game-in-browser/room/" + this.name + "/" + this.myroomId);
+        this.ws = new WebSocket("ws://localhost:8081/java-game-in-browser/room/" + this.name + "/" + this.myroomId);
         this.ws.onopen = () => this.onOpenSock();
         this.ws.onmessage = (e) => this.onOtherMessage(JSON.parse(e.data));
         this.ws.onclose = () => this.onClose();
@@ -126,6 +127,3 @@ let chatUnit = {
 };
 
 window.addEventListener("load", e => chatUnit.init());
-
-
-
