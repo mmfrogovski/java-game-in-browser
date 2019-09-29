@@ -1,37 +1,42 @@
 package com.game.java.web;
 
-import com.game.java.gameWithBotLogic.GameWithBotLogic;
 import com.game.java.gameWithBotLogic.NumberOfBullsAndCows;
-import com.game.java.model.jdbc.User;
+import com.game.java.model.jdbc.*;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Objects.isNull;
 
-public class GameWithBotServlet extends HttpServlet {
+public class MultiplayerGameServlet extends HttpServlet {
     private User user;
 
+    private RoomDao roomDao;
+    private UserDao userDao;
+
     @Override
-    public void init(ServletConfig config) throws ServletException {
+    public void init() {
+        this.roomDao = RoomDaoImpl.getInstance();
+        this.userDao = UserDaoImpl.getInstance();
     }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (isNull(req.getSession().getAttribute("user"))) {
             resp.sendRedirect(req.getContextPath() + "/homePage");
         } else {
-            user = (User) req.getSession().getAttribute("user");
-            user.setGameWithBotLogic(new GameWithBotLogic());
-            req.getRequestDispatcher("/WEB-INF/pages/gameWithBot.jsp").forward(req, resp);
+            Optional<Room> room = roomDao.getRoomByName(getRoomNameFromPath(req));
+            if (room.isPresent()) {
+                req.setAttribute("users", roomDao.getUsersFromRoom(room.get()));
+                req.getRequestDispatcher("/WEB-INF/pages/multiplayerGame.jsp").forward(req, resp);
+            }
         }
-
-
     }
 
     @Override
@@ -43,6 +48,11 @@ public class GameWithBotServlet extends HttpServlet {
             req.setAttribute("message", "You win!!!");
             user.setGameWithBotLogic(null);
         }
-        req.getRequestDispatcher("/WEB-INF/pages/gameWithBot.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/multiplayerGame.jsp").forward(req, resp);
+    }
+
+
+    protected String getRoomNameFromPath(HttpServletRequest request) {
+        return request.getPathInfo().substring(1);
     }
 }

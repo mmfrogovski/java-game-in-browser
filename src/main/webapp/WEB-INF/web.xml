@@ -95,4 +95,14 @@
         <url-pattern>/deleteUserFromRoom/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>multiplayerGame</servlet-name>
+        <servlet-class>com.game.java.web.MultiplayerGameServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>multiplayerGame</servlet-name>
+        <url-pattern>/multiplayerGame/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>

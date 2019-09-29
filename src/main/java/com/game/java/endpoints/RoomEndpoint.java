@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @ServerEndpoint(value = "/room/{user}/{roomId}", decoders = {MessageDecoder.class}, encoders = {MessageEncoder.class})
-public class gameEndpoint {
+public class RoomEndpoint {
 
     private Session session = null;
     private String username = "anonimus";
@@ -26,12 +26,18 @@ public class gameEndpoint {
         this.session = session;
         this.username = username;
         this.roomId = roomId;
+
         sessionList.add(session);
     }
 
     @OnClose
     public void onClose(Session session) {
-        sessionList.remove(session);
+        try {
+            System.out.println(session + "removed");
+            sessionList.remove(session);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @OnError
@@ -41,8 +47,6 @@ public class gameEndpoint {
 
     @OnMessage
     public void onMessage(Session session, Message msg) {
-        msg.setRoomId(this.roomId);
-        msg.setName(this.username);
         sessionList.forEach(s -> {
             if (s == this.session) return;
             try {

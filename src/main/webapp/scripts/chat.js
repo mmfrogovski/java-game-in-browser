@@ -38,7 +38,7 @@ let chatUnit = {
             }
         }
         if (1 < g) {
-            window.location.replace("http://localhost:8080/java-game-in-browser/game/" + this.gameId)
+            window.location.replace("http://localhost:8080/java-game-in-browser/multiplayerGame/" + this.gameId)
         }
 
     }
@@ -84,7 +84,7 @@ let chatUnit = {
         textBlock.className = "text";
         textBlock.innerText = msg.text;
 
-        if(msg.roomId === this.myroomId) {
+        if (msg.roomId === this.myroomId) {
             msgBlock.appendChild(fromBlock);
             msgBlock.appendChild(textBlock);
             this.chatMessageContainer.appendChild(msgBlock);
@@ -109,7 +109,7 @@ let chatUnit = {
     }
     ,
     onClose() {
-
+        this.ws.close();
     },
     sendMessage(msg) {
         this.onMyMessage({name: "I,m", text: msg.text});

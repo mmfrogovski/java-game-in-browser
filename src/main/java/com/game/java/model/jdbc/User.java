@@ -1,6 +1,7 @@
 package com.game.java.model.jdbc;
 
 import com.game.java.gameWithBotLogic.GameWithBotLogic;
+import com.game.java.gameWithUserLogic.GameWithUserLogic;
 
 import java.util.Objects;
 
@@ -12,6 +13,17 @@ public class User {
     private boolean inGame;
     private int inRoom;
     private GameWithBotLogic gameWithBotLogic;
+    private GameWithUserLogic gameWithUserLogic;
+
+    public GameWithUserLogic getGameWithUserLogic() {
+        return gameWithUserLogic;
+    }
+
+    public void setGameWithUserLogic(GameWithUserLogic gameWithUserLogic) {
+        this.gameWithUserLogic = gameWithUserLogic;
+    }
+
+
 
     public GameWithBotLogic getGameWithBotLogic() {
         return gameWithBotLogic;

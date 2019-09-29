@@ -6,8 +6,7 @@
 
 <head>
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/styles/chat.css">
-    <script src="${pageContext.servletContext.contextPath}/scripts/chatAndReady.js"></script>
-
+    <script src="${pageContext.servletContext.contextPath}/scripts/chat.js"></script>
 </head>
 <tags:master pageTitle="Game">
 
